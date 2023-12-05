@@ -4,7 +4,7 @@ import bridge.controller.dto.BridgeSquaresDto;
 import bridge.domain.bridge.BridgeGame;
 import bridge.domain.bridge.BridgeMaker;
 import bridge.domain.bridge.BridgeSize;
-import bridge.domain.bridge.NextStatus;
+import bridge.domain.bridge.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -27,9 +27,9 @@ public final class GameController {
         playRoundRecursive(bridgeGame);
 
         if (bridgeGame.isFailed()) {
-            final NextStatus nextStatus = InputView.readGameCommand();
+            final GameCommand gameCommand = InputView.readGameCommand();
 
-            if (nextStatus.willReplay()) {
+            if (gameCommand.isReplay()) {
                 bridgeGame.retry();
                 play(bridgeGame);
             }

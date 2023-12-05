@@ -1,17 +1,17 @@
 package bridge.domain.bridge;
 
-public enum NextStatus {
+public enum GameCommand {
     REPLAY("R"),
     QUIT("Q");
 
     private final String value;
 
-    NextStatus(final String value) {
+    GameCommand(final String value) {
         this.value = value;
     }
 
 
-    public static NextStatus from(final String input) {
+    public static GameCommand from(final String input) {
         if ("R".equals(input)) {
             return REPLAY;
         }
@@ -22,7 +22,7 @@ public enum NextStatus {
         throw new IllegalArgumentException("유효하지 않은 입력입니다. `R`, `Q` 중 하나를 입력해 주세요.");
     }
 
-    public boolean willReplay() {
+    public boolean isReplay() {
         return this == REPLAY;
     }
 }
