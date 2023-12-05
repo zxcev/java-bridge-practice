@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class BridgeMap {
+    private static final String INVALID_BRIDGE_LEN_MSG = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final int MIN_BRIDGE_LEN = 3;
+    private static final int MAX_BRIDGE_LEN = 20;
     private final List<String> bridge;
     private final List<MoveSquare> upside = new ArrayList<>();
     private final List<MoveSquare> downside = new ArrayList<>();
@@ -16,6 +19,13 @@ public final class BridgeMap {
 
     public BridgeMap(final List<String> bridge) {
         this.bridge = bridge;
+        validateBridgeMapLength(bridge);
+    }
+
+    private static void validateBridgeMapLength(final List<String> bridge) {
+        if (bridge.size() < MIN_BRIDGE_LEN || bridge.size() > MAX_BRIDGE_LEN) {
+            throw new IllegalArgumentException(INVALID_BRIDGE_LEN_MSG);
+        }
     }
 
     public boolean reachedToEnd() {
