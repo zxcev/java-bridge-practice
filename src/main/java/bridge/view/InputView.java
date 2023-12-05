@@ -13,15 +13,15 @@ public final class InputView {
     private static final String INPUT_NEXT_MOVE_POSITION_MSG = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)"; // TODO
     private static final String INPUT_NEXT_GAME_STATUS_MSG = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    public static BridgeSize inputBridgeSize() {
+    public static BridgeSize readBridgeSize() {
         return RetryHandler.handleRetry(InputView::_inputBridgeSize);
     }
 
-    public static String inputNextMovePosition() {
+    public static String readMoving() {
         return RetryHandler.handleRetry(InputView::_inputNextMovePosition);
     }
 
-    public static NextStatus inputNextGameStatus() {
+    public static NextStatus readGameCommand() {
         return RetryHandler.handleRetry(InputView::_inputNextGameStatus);
     }
 
