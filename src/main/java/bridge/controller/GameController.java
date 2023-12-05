@@ -27,7 +27,7 @@ public final class GameController {
         playRoundRecursive(bridgeGame);
 
         if (bridgeGame.isFailed()) {
-            final NextStatus nextStatus = InputView.inputNextGameStatus();
+            final NextStatus nextStatus = InputView.readGameCommand();
 
             if (nextStatus.willReplay()) {
                 bridgeGame.retry();
@@ -37,11 +37,11 @@ public final class GameController {
     }
 
     private void playRoundRecursive(final BridgeGame bridgeGame) {
-        final String nextMovePosition = InputView.inputNextMovePosition();
+        final String nextMovePosition = InputView.readMoving();
         bridgeGame.move(nextMovePosition);
 
         final BridgeSquaresDto bridgeSquaresDto = bridgeGame.toBridgeSquaresDto();
-        OutputView.printSquares(bridgeSquaresDto);
+        OutputView.printMap(bridgeSquaresDto);
 
         if (!bridgeGame.isFailed() && !bridgeGame.isEnded()) {
             playRoundRecursive(bridgeGame);
@@ -50,7 +50,7 @@ public final class GameController {
 
     private BridgeGame createBridgeGame() {
         // 1. 다리 길이 입력
-        final BridgeSize bridgeSize = InputView.inputBridgeSize();
+        final BridgeSize bridgeSize = InputView.readBridgeSize();
 
         // 2. 다리 생성
         final List<String> bridge = bridgeMaker.makeBridge(bridgeSize.value());
