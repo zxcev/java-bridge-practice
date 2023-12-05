@@ -18,10 +18,10 @@ public final class MovePosition {
 
     public static String from(final int input) {
         if (input == 0) {
-            return U;
+            return D;
         }
         if (input == 1) {
-            return D;
+            return U;
         }
 
         throw new IllegalArgumentException("이동할 위치는 반드시 `0`, `1`만 입력 가능합니다.");
